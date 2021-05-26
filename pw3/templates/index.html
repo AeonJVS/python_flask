@@ -5,12 +5,24 @@
 		<title>All your base</title>
 	</head>
 	<body>
-		<h1>Dump of names in the Greatmen-database</h1>
+		<nav>
+			<a href="/">Frontpage</a>
+			<a href="/msg">Message</a>
+		</nav>
+		{% if get_flashed_messages() %}
+			{% for message in get_flashed_messages() %}
+				{{ message }}
+			{% endfor %}
+		{% endif %}
+
+		{% block content %}
+			<h1>Dump of names in the Greatmen-database</h1>
 		
-		{% for greatman in greatmen %}
+			{% for greatman in greatmen %}
 
-			<p>{{ greatman.id }} {{ greatman.name }}</p>
+				<p>{{ greatman.id }} {{ greatman.name }}</p>
 
-		{% endfor %}
+			{% endfor %}
+		{% endblock content %}
 	</body>
 </html>

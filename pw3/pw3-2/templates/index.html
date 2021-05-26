@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Database and Form</title>
+</head>
+<body>
+	{% block content %}
+		<h1>Dump of products in the database</h1>
+		{% for product in products %}
+			<p>{{ product.id }}. {{ product.name }}, quantity: {{ product.quantity }}</p>
+		{% endfor %}
+	{% endblock content %}
+</body>
+</html>
