@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>All your base</title>
+	</head>
+	<body>
+		<h1>Dump of names in the Greatmen-database</h1>
+		
+		{% for greatman in greatmen %}
+
+			<p>{{ greatman.id }} {{ greatman.name }}</p>
+
+		{% endfor %}
+	</body>
+</html>
