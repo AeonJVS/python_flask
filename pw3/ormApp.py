@@ -23,7 +23,7 @@ def initMe():
 
 def index():
 	print(Greatmen.query.first().name)
-	return render_template("index.html", greatman=Greatmen.query.first(), greatmen=Greatmen.query.all())
+	return render_template("index.html", greatmen=Greatmen.query.all())
 
 if __name__ == "__main__":
 	app.run()
