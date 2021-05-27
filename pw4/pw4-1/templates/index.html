@@ -1,0 +1,16 @@
+{% set title="Addressbook" %}
+
+{% extends "base.html" %}
+
+{% block content %}
+	{% for address in addresses %}
+		<p><b>Name: </b>{{ address.namefirst }} {{ address.namelast }}</p>
+		<p><b>Email: </b>{{ address.email }}</p>
+		<p><b>Phone Number: </b>{{ address.pnumber }}</p>
+		<p><b>Favorite Color: </b>{{ address.favcol }}</p>
+		<a href="{{ address.id }}/edit">Edit address</a>
+		<a href="{{ address.id }}/delete">Delete address</a>
+		<p>--------------------------------------------------</p>
+		<br>
+	{% endfor %}
+{% endblock content %}

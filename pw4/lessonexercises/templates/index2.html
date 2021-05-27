@@ -1,0 +1,10 @@
+{% set title="Movie Quotes" %}
+{% extends "base2.html" %}
+
+{% block content %}
+	{% for movieQuote in movieQuotes %}
+		<p>
+			<b>Movie/TV_show:</b> {{ movieQuote.name }}, <b>Quote:</b> {{ movieQuote.quote }} - <a href="{{ movieQuote.id }}/edit">Edit</a> <a href="{{ movieQuote.id }}/delete">Delete</a>
+		</p>
+	{% endfor %}
+{% endblock content %}

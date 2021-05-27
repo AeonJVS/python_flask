@@ -1,0 +1,8 @@
+{% set title="Retro car base" %}
+{% extends "base1.html" %}
+
+{% block content %}
+	{% for retroCar in retroCars %}
+		<p>Name: {{ retroCar.name }}, Manufacturer: {{retroCar.manufacturer}}, Color: {{ retroCar.color }}</p>
+	{% endfor %}
+{% endblock content %}

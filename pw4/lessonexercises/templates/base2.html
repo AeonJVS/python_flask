@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name=viewport content="width=device-width, initial-size=1">
+	</head>
+	<body>
+		<nav>
+			<a href="/">Home</a>
+			<a href="/new">Add New</a>
+		</nav>
+		
+		{% for msg in get_flashed_messages() %}
+			<p><b>{{ msg }}</b></p>
+		{% endfor %}
+		<h1>{{ title }}</h1>
+		{% block content %}
+		{% endblock content %}
+	</body>
+</html>
