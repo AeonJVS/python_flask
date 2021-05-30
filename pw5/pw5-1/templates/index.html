@@ -1,0 +1,13 @@
+{% set title="Welcome to Book160 - where a book's summary is just a click away!" %}
+
+{% extends "base.html" %}
+
+{% block content %}
+	{% for entry in entry %}
+		<p><b>Author:</b> {{ entry.author }}</p>
+		<p><b>Book:</b> {{ entry.bookname }}</p>
+		<p><b>Summary:</b> {{ entry.summary }}</p>
+		<p>________________________________________</p>
+		<br>
+	{% endfor %}	
+{% endblock content %}

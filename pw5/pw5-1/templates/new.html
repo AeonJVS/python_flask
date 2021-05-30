@@ -1,0 +1,19 @@
+{% set title="Add a new book summary in 160 characters or less." %}
+
+{% extends "base.html" %}
+
+{% block content %}
+	<form method=POST>
+		{% for field in form %}
+			<p>
+				{% if not field.flags.hidden %}
+					{{ field.label }}
+					<br>
+				{% endif %}
+
+				{{ field }}
+			</p>
+		{% endfor %}
+		<input type=submit>
+	</form>
+{% endblock content %}

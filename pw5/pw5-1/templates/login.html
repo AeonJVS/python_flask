@@ -1,0 +1,21 @@
+{% set title="Login" %}
+
+{% extends "base.html" %}
+
+{% block content %}
+	<form method=post>
+		{% for field in form %}
+			{% if not field.flags.hidden %}
+				{{ field.label }}
+			{% endif %}
+
+			{{ field }}
+			
+			{% for err in field.errors %}
+				<b>{{ err }}</b>
+			{% endfor %}
+			<br>
+		{% endfor %}		
+		<input type=submit>
+	</form>
+{% endblock content %}

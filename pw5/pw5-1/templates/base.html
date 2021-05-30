@@ -1,0 +1,33 @@
+{% if not title %}
+	{% set title="Welcome to the Book160 - where a book's summary is just a click away!" %}
+{% endif %}
+
+<!DOCTYPE htlm>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width initial-scale=1">
+		<title>{{ title }}</title>
+	</head>
+	<body>
+		{% for msg in get_flashed_messages() %}
+			<p><b>{{ msg }}</b></p>
+		{% endfor %}
+
+		<nav>
+			<a href="/">Home</a>
+			<a href="/new">Add</a>
+			{% if currentUser() %}
+				<a href="/user/logout">Logout</a> - {{ currentUser().email }} -
+			{% else %}
+				<a href="/user/login">Login</a>
+				<a href="/user/register">Register</a>
+			{% endif %}
+		</nav>
+
+		<h1>{{ title }}</h1>
+
+		{% block content %}
+		{% endblock content %}
+	</body>
+</html>
