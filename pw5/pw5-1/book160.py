@@ -8,12 +8,13 @@ from wtforms import StringField, PasswordField, validators
 
 app = Flask(__name__)
 app.secret_key = "aiCa5soo5ieg5iu2Hae2gaaxeephie"
+app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql:///juuso'
 db = SQLAlchemy(app)
 
 class Entry(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	author = db.Column(db.String, nullable=False)
-	bookname = db.Column(db.String, nullable=False)
+	bookname = db.Column(db.String, unique=True, nullable=False)
 	summary = db.Column(db.String(160), nullable=False)
 
 EntryForm = model_form(Entry, base_class=FlaskForm, db_session=db.session)
@@ -108,8 +109,8 @@ def logoutView():
 def initDB():
 	db.create_all()
 
-	entry = Entry(author="J.R.R. Tolkien", bookname="The Lord of The Rings", summary="In the land of Middle-Earth, a little hobbit is forced by fate to carry a ring containing the lifeforce of a dark lord and destroy it before it is too late.")
-	db.session.add(entry)
+#	entry = Entry(author="J.R.R. Tolkien", bookname="The Lord of The Rings", summary="In the land of Middle-Earth, a little hobbit is forced by fate to carry a ring containing the lifeforce of a dark lord and destroy it before it is too late.")
+#	db.session.add(entry)
 
 	db.session.commit()
 
@@ -145,5 +146,3 @@ def index():
 	entry = Entry.query.all()
 	return render_template("index.html", entry=entry)
 
-if __name__ == "__main__":
-	app.run()
