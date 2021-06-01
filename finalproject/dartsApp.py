@@ -1,3 +1,29 @@
+#DartsApp is a simple score-keeping application for the game of Darts.
+#
+#Demo is usable at 139.162.154.116 for at least the duration of the course
+#"Python Web Service From Idea to Production" held by Tero Karvinen.
+#
+#Please keep in mind, that this application is in Alpha phase of its
+#software release life cycle and will probably remain as such. This means
+#that parts of the application may fail due to errors, crash or
+#experience data loss.
+
+#Copyright (C) 2021 Juuso Ihatsu
+#
+#This program is free software; you can redistribute it and/or
+#modify it under the terms of the GNU General Public License
+#as published by the Free Software Foundation; either version 2
+#of the License, or (at your option) any later version.
+#
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU General Public License
+#along with this program; if not, write to the Free Software
+#Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
 from flask import Flask, render_template, flash, redirect, session, abort
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
