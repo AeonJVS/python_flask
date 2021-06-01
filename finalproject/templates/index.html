@@ -1,0 +1,13 @@
+{% set title="Welcome to DartsApp - your group's scorekeep!" %}
+
+{% extends "base.html" %}
+
+{% block content %}
+	{% for scorekeep in scorekeep %}
+		<p><b>Player:</b> {{ scorekeep.name }}</p>
+		<p><b>Score left:</b> {{ scorekeep.score }}</p>
+		<a href="{{ scorekeep.id }}/edit">Update score</a>
+		<p>________________________________________</p>
+		<br>
+	{% endfor %}	
+{% endblock content %}
