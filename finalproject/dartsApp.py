@@ -32,7 +32,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import StringField, PasswordField, validators
 
 app = Flask(__name__)
-app.secret_key = "aiCa5soo5ieg5iu2Hae2gaaxeephie"
+#app.secret_key    --- removed for security purposes
 app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql:///juuso'
 db = SQLAlchemy(app)
 
