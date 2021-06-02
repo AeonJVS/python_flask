@@ -15,6 +15,10 @@ Therefore some functionalities are missing due to time constraints.
 In the near-future I might update the score-keeper to include the missing
 functions.
 
+Playable demo is available for testing at http://139.162.154.116/ for at
+least the duration of the course. There is no guarantee of the server
+staying live after 2.6.2021.
+
 ----------------------------------------------
 
 
