@@ -1,0 +1,63 @@
+<!--
+Copyright (C) 2021  Juuso Ihatsu
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+{% if not title %}
+	{% set title="Welcome to the DartsApp - your group's scorekeep!" %}
+{% endif %}
+
+<!DOCTYPE htlm>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width initial-scale=1">
+		<title>{{ title }}</title>
+	</head>
+	<body>
+		<nav>
+			<a href="/">Home</a>
+		<!--	<a href="/new">Add a player</a> -->
+			{% if currentUser() %}
+				<a href="/user/logout">Logout</a> - {{ currentUser().email }} -
+			{% else %}
+				<a href="/user/login">Login</a>
+				<a href="/user/register">Register</a>
+			{% endif %}
+		</nav>
+
+		{% for msg in get_flashed_messages() %}
+			<p><b>{{ msg }}</b></p>
+		{% endfor %}
+
+		<h1>{{ title }}</h1>
+
+		{% if not currentUser() %}
+			<h3>Please register/log in into the game session</h3>
+		{% endif %}
+		{% if currentUser() %}
+<!--			<a href="/user/groups/create">Create a game session</a>
+-->			<br>
+			<a href="/groups">Game Sessions</a>
+<!--			<a href="/new">Add a player</a> -->
+		{% endif %}
+		{% if currentGroup() %}
+			<a href="/groups/logout">Leave Game Session</a>
+		{% endif %}
+		{% block content %}
+		{% endblock content %}
+	</body>
+</html>

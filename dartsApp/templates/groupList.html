@@ -1,0 +1,24 @@
+{% set title="List of available game sessions" %}
+
+{% extends "base.html" %}
+
+{% block content %}
+	<a href="/user/groups/create">Create a Game Session</a>
+	<!-- Group length is checked to be one, because Lobby always exists -->
+	{% if groups|length == 1 %}
+		<p>There are currently no active groups</p>
+	{% else %}
+		{% for group in groups %}
+			{% if group.name != "Lobby" %}
+				{% if gid == group.id %}
+					<p>You are already in {{ group.name }}! <a href="/new">Add a new player</a></p>
+				{% else %}
+					<form action="/groups/{{ group.id }}/login" method=POST>
+						<input type="hidden" name=csrf_token value="{{ csrf_token() }}"/>
+						<input type="submit" name="name" value="{{ group.name }}"> Join this session</input>
+					</form>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+{% endblock content %}

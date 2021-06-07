@@ -1,0 +1,70 @@
+<!--
+Copyright (C) 2021  Juuso Ihatsu
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+-->
+
+{% set title="Welcome to DartsApp - your group's scorekeep!" %}
+
+{% extends "base.html" %}
+
+<!--	In case I forget, the rules of render are:
+	1. be logged in, 2. belong to a group,
+	3. and if the id tags of scorekeepers and groups match
+	render the groups game -->
+
+{% block content %}
+	{% if currentUser() %}
+		{% for group in groups %}
+			{% if user.groupId == group.id %}
+				{% if group.id != 1 %}
+					<a href="/new">Add a new player</a>
+				{% endif %}
+				{% for scorekeep in scorekeep %}
+					{% if scorekeep.groupId == group.id %}
+						{% if scorekeep.score == 0 %}
+							<h2><b>Winner!</b> {{ scorekeep.name }} has reached 0 points!</h2>
+							<a href="groups/{{group.id}}/nullify">End the game</a>
+						{% else %}
+							<p><b>Player:</b> {{ scorekeep.name }}</p>
+							<p><b>Score left:</b> {{ scorekeep.score }}</p>
+							{% if user.id == scorekeep.userId %}
+								<a href="{{ scorekeep.id }}/edit">Update score</a>
+								<a href="{{ scorekeep.id }}/delete">Delete your score-keeper</a>
+							{% endif %}
+							<p>________________________________________</p>
+							<br>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		{% endfor %}	
+	{% endif %}
+<!--
+	{% for scorekeep in scorekeep %}
+		{% if scorekeep.score == 0 %}
+			<h2><b>Winner!</b> {{ scorekeep.name }} has reached 0 points!</h2>
+		{% else %}
+			<p><b>Player:</b> {{ scorekeep.name }}</p>
+			<p><b>Score left:</b> {{ scorekeep.score }}</p>
+			{% if userId == scorekeep.userId %}
+				<a href="{{ scorekeep.id }}/edit">Update score</a>
+			{% endif %}
+			<p>________________________________________</p>
+			<br>
+		{% endif %}
+	{% endfor %}	
+-->
+{% endblock content %}
